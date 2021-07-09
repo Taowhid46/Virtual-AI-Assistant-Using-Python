@@ -1,20 +1,14 @@
-# This is a sample Python script.
+import speech_recognition as sr
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+listener = sr.Recognizer()
+try:
+    with sr.Microphone() as source:
+        print('Listening....')
+        voice = listener.listen(source)
+        command = listener.recognize_google(voice)
+        command = command.lower()
+        if 'what' in command:
+            print(command)
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
-
-print('Hello Michel')
-
-print(5+10)
+except:
+    pass
