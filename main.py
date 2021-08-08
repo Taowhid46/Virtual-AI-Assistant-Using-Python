@@ -1,6 +1,8 @@
 import speech_recognition as sr
 import pyttsx3
 import pywhatkit
+import datetime
+import wikipedia
 
 listener = sr.Recognizer()
 engine = pyttsx3.init()
@@ -36,6 +38,13 @@ def run_mac():
        song = command.replace('play', '')
        talk('playing ' + song)
        pywhatkit.playonyt(song)
-
+   elif 'time' in command:
+       time = datetime.datetime.now().strftime('%I:%M %p')
+       talk('Current time is ' + time)
+   elif 'who is' in command:
+       person = command.replace('who is', '')
+       info = wikipedia.summary(person, 2)
+       print(info)
+       talk(info)
 
 run_mac()
